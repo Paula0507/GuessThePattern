@@ -1,17 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    //Testtttttttttttttttttttttttt
-
     const squaresGuess= document.querySelectorAll('.guess div')
     const squaresHint = document.querySelectorAll('.hints div')
     const checkButtons= document.querySelectorAll('button')
 
-    const rightPattern = createRandomPattern()
+    var rightPattern = createRandomPattern()
     console.log(rightPattern)
 
     
     // add Eventlistener for each button in checkButtons
     checkButtons.forEach(button => button.addEventListener('click', createColorArray))
+
+    const playAgain= document.getElementById('newGame')
+    
+    playAgain.addEventListener('click', ()=> {
+        rightPattern= createRandomPattern()
+
+        //renew guess squares
+        for (let i = 0, len = squaresGuess.length; i < len; i++){
+            squaresGuess[i].classList.add('white')
+            if( squaresGuess[i].classList.contains('redDot')){
+                squaresGuess[i].classList.remove('redDot')
+                
+                }
+            if( squaresGuess[i].classList.contains('orangeDot')){
+                squaresGuess[i].classList.remove('orangeDot')
+                }
+
+            if( squaresGuess[i].classList.contains('yellowDot')){
+                squaresGuess[i].classList.remove('yellowDot')
+                }
+            if( squaresGuess[i].classList.contains('greenDot')){
+                squaresGuess[i].classList.remove('greenDot')
+                }
+            if( squaresGuess[i].classList.contains('blueDot')){
+                squaresGuess[i].classList.remove('blueDot')
+                }
+            if( squaresGuess[i].classList.contains('purpleDot')){
+                squaresGuess[i].classList.remove('purpleDot')
+                }
+        }
+        for(let j=0; j<squaresHint.length;j++){
+            if(squaresHint[j].classList.contains('whiteHint')){
+                squaresHint[j].classList.remove('whiteHint')
+            }
+            if(squaresHint[j].classList.contains('blackHint')){
+                squaresHint[j].classList.remove('blackHint')
+            }
+        }
+    
+
+
+    })
 
     
 
@@ -89,11 +129,11 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
     
         let line = this.classList
 
-        console.log(line)
+      
         // line1
         if (this.classList.contains('l1')){
             let squaresCurrentLine= document.querySelectorAll('.guess div.l1');
-            console.log(squaresCurrentLine)
+            
 
             for(let i=0; i<squaresCurrentLine.length;i++){
                 let color= squaresCurrentLine[i].id
@@ -107,7 +147,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
         //line2 
         else if (this.classList.contains('l2')){
             let squaresCurrentLine= document.querySelectorAll('.guess div.l2');
-            console.log(squaresCurrentLine)
+            
 
             for(let i=0; i<squaresCurrentLine.length;i++){
                 let color= squaresCurrentLine[i].id
@@ -120,7 +160,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
         //line3
         else if (this.classList.contains('l3')){
             let squaresCurrentLine= document.querySelectorAll('.guess div.l3');
-            console.log(squaresCurrentLine)
+            
 
             for(let i=0; i<squaresCurrentLine.length;i++){
                 let color= squaresCurrentLine[i].id
@@ -133,7 +173,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 
         else if (this.classList.contains('l4')){
             let squaresCurrentLine= document.querySelectorAll('.guess div.l4');
-            console.log(squaresCurrentLine)
+            
 
             for(let i=0; i<squaresCurrentLine.length;i++){
                 let color= squaresCurrentLine[i].id
@@ -146,7 +186,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
     //line5
     else if (this.classList.contains('l5')){
         let squaresCurrentLine= document.querySelectorAll('.guess div.l5');
-        console.log(squaresCurrentLine)
+      
 
         for(let i=0; i<squaresCurrentLine.length;i++){
             let color= squaresCurrentLine[i].id
@@ -159,7 +199,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
     //line6
     else if (this.classList.contains('l6')){
         let squaresCurrentLine= document.querySelectorAll('.guess div.l6');
-        console.log(squaresCurrentLine)
+        
 
         for(let i=0; i<squaresCurrentLine.length;i++){
             let color= squaresCurrentLine[i].id
@@ -171,7 +211,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 // line7
     else if (this.classList.contains('l7')){
         let squaresCurrentLine= document.querySelectorAll('.guess div.l7');
-        console.log(squaresCurrentLine)
+        
 
         for(let i=0; i<squaresCurrentLine.length;i++){
             let color= squaresCurrentLine[i].id
@@ -183,7 +223,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 // line8
     else if (this.classList.contains('l8')){
         let squaresCurrentLine= document.querySelectorAll('.guess div.l8');
-        console.log(squaresCurrentLine)
+        
 
         for(let i=0; i<squaresCurrentLine.length;i++){
             let color= squaresCurrentLine[i].id
@@ -202,13 +242,14 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
          const status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
 
        // check if position and color is right
-        counter=0;
+        positionCounter=0;
+        colorCounter=0;
         for(let i=0; i<userPattern.length;i++){
             
             if(userPattern[i]===rightPattern[i]){
                
                 squaresHint[i].classList.add('whiteHint')
-                counter+=1;
+                positionCounter+=1;
                 status[rightPattern[i]]-=1
             }
             //check for right colors
@@ -218,6 +259,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
                     if (rightPattern[color]=== userPattern[i] && status[rightPattern[color]]>0){
                        
                         squaresHint[i].classList.add('blackHint')
+                        colorCounter+=1;
                         status[rightPattern[color]]-=1;
 
                     }
@@ -226,9 +268,12 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 
             }
         }
-        if(counter==4){
+        if(positionCounter===4){
             
             alert('You guessed right!')
-        }  
+        }
+        if (positionCounter===0 && colorCounter===0)  {
+            alert('Nothing is right')
+        }
 }
 })
