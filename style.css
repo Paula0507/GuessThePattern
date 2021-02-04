@@ -1,0 +1,76 @@
+body{
+    background-color: rgb(75, 12, 12);
+}
+
+.hints {
+    height: 100px;
+    width: 120px;
+    display: flex;
+    flex-wrap: wrap;
+   
+
+}
+.hints div{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-color: white;
+}
+
+.guess {
+    height: 100px;
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.guess div{
+    height: 100px;
+    width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid; 
+    border-color: rgb(75, 12, 12);
+    
+}
+
+.blueDot {
+    background-color: blue;
+    border-radius: 50px;
+}
+.white{
+    background-color: white;
+    
+}
+.redDot{
+    background-color: red;
+    border-radius: 50px;
+}
+.yellowDot{
+    background-color: yellow;
+    border-radius: 50px;
+}
+.greenDot{
+    background-color: green;
+    border-radius: 50px;
+}
+
+.purpleDot{
+    background-color: purple;
+    border-radius: 50px;
+}
+.orangeDot {
+    background-color: orange;
+  border-radius: 50px;
+}
+
+.whiteHint{
+    background-color: white;
+
+}
+
+.blackHint{
+    background-color: black;
+}
