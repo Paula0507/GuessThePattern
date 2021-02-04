@@ -78,11 +78,12 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
         for(let i=0; i<4;i++){
             randomPattern.push(colors[Math.floor(Math.random() * 6)])
         }
-        
         return randomPattern
     }
-
+    // create an Array wi the colors chosen by the user
+    // is usind the 'id' tag
     function createColorArray(){
+
         
         let userPattern=[]
     
@@ -104,7 +105,6 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
         
 
         //line2 
-
         else if (this.classList.contains('l2')){
             let squaresCurrentLine= document.querySelectorAll('.guess div.l2');
             console.log(squaresCurrentLine)
@@ -194,26 +194,31 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 }
     }
 
+    
+
     function checkMatch(userPattern, squaresHint){
-        // check if position and color is right
+
+        // check how often a color is used in the solution
+         const status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
+
+       // check if position and color is right
         counter=0;
-        
-        
         for(let i=0; i<userPattern.length;i++){
             
-            if(userPattern[i]===rightPattern[i] ){
+            if(userPattern[i]===rightPattern[i]){
                
                 squaresHint[i].classList.add('whiteHint')
                 counter+=1;
+                status[rightPattern[i]]-=1
             }
             //check for right colors
             else{ 
            
                 for (let color in rightPattern ){
-                 
-                    if (rightPattern[color]=== userPattern[i]){
+                    if (rightPattern[color]=== userPattern[i] && status[rightPattern[color]]>0){
                        
                         squaresHint[i].classList.add('blackHint')
+                        status[rightPattern[color]]-=1;
 
                     }
 
