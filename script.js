@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    //Testtttttttttttttttttttttttt
+
     const squaresGuess= document.querySelectorAll('.guess div')
     const squaresHint = document.querySelectorAll('.hints div')
     const checkButtons= document.querySelectorAll('button')
