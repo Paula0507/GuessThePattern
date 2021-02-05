@@ -1,6 +1,18 @@
 body{
     background-color: rgb(75, 12, 12);
 }
+button{
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 50%;
+}
 .solution {
     background-color:  rgb(75, 12, 12);
     height: 100px;
@@ -21,7 +33,7 @@ div.instructions{
     height: 400px;
     width: 400px;
     position: absolute;
-   right: 100px;
+   right: 80px;
     top:100px;
     background-color: rgb(75, 12, 12);
     color:rgb(75, 12, 12);
