@@ -6,6 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var rightPattern = createRandomPattern()
     console.log(rightPattern)
+    const instructionsText= document.querySelector('div.instructions')
+    const instructionsButton= document.querySelector('button.instructions')
+    
+    instructionsButton.addEventListener('click', () => {
+        if(instructionsButton.innerHTML==='Instructions'){
+       instructionsText.style.backgroundColor='white'
+       instructionsText.style.color='black'
+       instructionsButton.innerHTML='Hide'
+        }
+        else{
+            instructionsText.style.backgroundColor='rgb(75, 12, 12)'
+       instructionsText.style.color='rgb(75, 12, 12)'
+        instructionsButton.innerHTML='Instructions'
+         }
+    })
 
     
     // add Eventlistener for each button in checkButtons
