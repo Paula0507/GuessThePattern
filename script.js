@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     playAgain.addEventListener('click', ()=> {
         rightPattern= createRandomPattern()
+        console.log(rightPattern)
 
         //renew guess squares
         for (let i = 0, len = squaresGuess.length; i < len; i++){
@@ -141,120 +142,41 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 
         
         let userPattern=[]
-    
-        let line = this.classList
+        const classGuess='.guess div.l'
+        const classHint ='.hints div.l'
+        const line= 'l'
 
+      for (let i=1; i<=8;i++){
+          let number= i.toString();
+          let classGuessLine= classGuess+number;
+          let linenumber=line+number;
+
+          let classHintLine= classHint+number;
+         
+          if (this.classList.contains(linenumber)){
+            let squaresCurrentLine= document.querySelectorAll(classGuessLine);
+            
+            
+
+            for(let i=0; i<squaresCurrentLine.length;i++){
+                let color= squaresCurrentLine[i].id
+                userPattern.push(color)
+        }
+        var squaresHint= document.querySelectorAll(classHintLine)
       
-        // line1
-        if (this.classList.contains('l1')){
-            let squaresCurrentLine= document.querySelectorAll('.guess div.l1');
-            
-
-            for(let i=0; i<squaresCurrentLine.length;i++){
-                let color= squaresCurrentLine[i].id
-                userPattern.push(color)
-        }
-        var squaresHint= document.querySelectorAll('.hints div.l1')
+        
         checkMatch(userPattern,squaresHint)
         }
         
-
-        //line2 
-        else if (this.classList.contains('l2')){
-            let squaresCurrentLine= document.querySelectorAll('.guess div.l2');
-            
-
-            for(let i=0; i<squaresCurrentLine.length;i++){
-                let color= squaresCurrentLine[i].id
-                userPattern.push(color)
-        }
-        var squaresHint= document.querySelectorAll('.hints div.l2')
-        checkMatch(userPattern,squaresHint)
-        }
-
-        //line3
-        else if (this.classList.contains('l3')){
-            let squaresCurrentLine= document.querySelectorAll('.guess div.l3');
-            
-
-            for(let i=0; i<squaresCurrentLine.length;i++){
-                let color= squaresCurrentLine[i].id
-                userPattern.push(color)
-        }
-        var squaresHint= document.querySelectorAll('.hints div.l3')
-        checkMatch(userPattern,squaresHint)
     }
-        //line4
-
-        else if (this.classList.contains('l4')){
-            let squaresCurrentLine= document.querySelectorAll('.guess div.l4');
-            
-
-            for(let i=0; i<squaresCurrentLine.length;i++){
-                let color= squaresCurrentLine[i].id
-                userPattern.push(color)
-        }
-        var squaresHint= document.querySelectorAll('.hints div.l4')
-        checkMatch(userPattern,squaresHint)
-    }
-
-    //line5
-    else if (this.classList.contains('l5')){
-        let squaresCurrentLine= document.querySelectorAll('.guess div.l5');
-      
-
-        for(let i=0; i<squaresCurrentLine.length;i++){
-            let color= squaresCurrentLine[i].id
-            userPattern.push(color)
-    }
-    var squaresHint= document.querySelectorAll('.hints div.l5')
-    checkMatch(userPattern,squaresHint)
-}
-
-    //line6
-    else if (this.classList.contains('l6')){
-        let squaresCurrentLine= document.querySelectorAll('.guess div.l6');
-        
-
-        for(let i=0; i<squaresCurrentLine.length;i++){
-            let color= squaresCurrentLine[i].id
-            userPattern.push(color)
-    }
-    var squaresHint= document.querySelectorAll('.hints div.l6')
-    checkMatch(userPattern,squaresHint)
-}
-// line7
-    else if (this.classList.contains('l7')){
-        let squaresCurrentLine= document.querySelectorAll('.guess div.l7');
-        
-
-        for(let i=0; i<squaresCurrentLine.length;i++){
-            let color= squaresCurrentLine[i].id
-            userPattern.push(color)
-    }
-    var squaresHint= document.querySelectorAll('.hints div.l7')
-    checkMatch(userPattern,squaresHint)
-}
-// line8
-    else if (this.classList.contains('l8')){
-        let squaresCurrentLine= document.querySelectorAll('.guess div.l8');
-        
-
-        for(let i=0; i<squaresCurrentLine.length;i++){
-            let color= squaresCurrentLine[i].id
-            userPattern.push(color)
-    }
-    var squaresHint= document.querySelectorAll('.hints div.l8')
-    checkMatch(userPattern,squaresHint)
-}
     }
 
     
 
     function checkMatch(userPattern, squaresHint){
 
-        // check how often a color is used in the solution
-         const status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
+        // check how often a color is used in the solution --> Dictionary
+         let status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
 
        // check if position and color is right
         positionCounter=0;
