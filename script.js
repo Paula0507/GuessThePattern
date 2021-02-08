@@ -156,10 +156,16 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
             
             if(userPattern[i]===rightPattern[i]){
                
-                squaresHint[i].classList.add('whiteHint')
+                 // reihenweise Anordnung der Hinweise
+                for (let j=0; j< squaresHint.length;j++){
+                    if (!squaresHint[j].classList.contains('whiteHint') && !squaresHint[j].classList.contains('blackHint') ){
+                squaresHint[j].classList.add('whiteHint')
                 positionCounter+=1;
                 status[rightPattern[i]]-=1
+                break
             }
+        }
+        }
             //check for right colors
             else{ 
                 toBeTested.push(i)
@@ -168,12 +174,16 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
             for(let x in toBeTested){
                 for (let color in rightPattern ){
                     if (rightPattern[color]=== userPattern[toBeTested[x]] && status[rightPattern[color]]>=1){
-                       
-                        squaresHint[toBeTested[x]].classList.add('blackHint')
-                        colorCounter+=1;
-                        status[rightPattern[color]]-=1;
+                        
+                        // reihenweise Anordnung der Hinweise
+                        for (let y=0; y< squaresHint.length;y++){
+                            if (!squaresHint[y].classList.contains('whiteHint') && !squaresHint[y].classList.contains('blackHint') ){
+                                    squaresHint[y].classList.add('blackHint')
+                                    colorCounter+=1;
+                                    status[rightPattern[color]]-=1;
+                                    break
 
-                    }
+                    }}}
 
                 }
             }
