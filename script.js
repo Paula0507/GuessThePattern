@@ -4,8 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const squaresHint = document.querySelectorAll('.hints div')
     const checkButtons= document.querySelectorAll('button')
 
+   const colors=["red","orange","yellow","green","blue","purple"]
+   let corlorClasses= colors
+    corlorClasses.push("white")
+
     var rightPattern = createRandomPattern()
     console.log(rightPattern)
+
+    // show instructions on buttonclick
     const instructionsText= document.querySelector('div.instructions')
     const instructionsButton= document.querySelector('button.instructions')
     
@@ -26,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // add Eventlistener for each button in checkButtons
     checkButtons.forEach(button => button.addEventListener('click', createColorArray))
 
+    // add eventlistener for playagain button
     const playAgain= document.getElementById('newGame')
     
     playAgain.addEventListener('click', ()=> {
@@ -35,27 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
         //renew guess squares
         for (let i = 0, len = squaresGuess.length; i < len; i++){
             squaresGuess[i].classList.add('white')
-            if( squaresGuess[i].classList.contains('redDot')){
-                squaresGuess[i].classList.remove('redDot')
+            for(let color in colors){
+            if( squaresGuess[i].classList.contains(colors[color])){
+                squaresGuess[i].classList.remove(colors[color])
                 
                 }
-            if( squaresGuess[i].classList.contains('orangeDot')){
-                squaresGuess[i].classList.remove('orangeDot')
-                }
-
-            if( squaresGuess[i].classList.contains('yellowDot')){
-                squaresGuess[i].classList.remove('yellowDot')
-                }
-            if( squaresGuess[i].classList.contains('greenDot')){
-                squaresGuess[i].classList.remove('greenDot')
-                }
-            if( squaresGuess[i].classList.contains('blueDot')){
-                squaresGuess[i].classList.remove('blueDot')
-                }
-            if( squaresGuess[i].classList.contains('purpleDot')){
-                squaresGuess[i].classList.remove('purpleDot')
-                }
+            }
         }
+        //renew hint squares
         for(let j=0; j<squaresHint.length;j++){
             if(squaresHint[j].classList.contains('whiteHint')){
                 squaresHint[j].classList.remove('whiteHint')
@@ -70,73 +64,49 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     
-
+//add an onclick to each guess square in your grid
 for (let i = 0, len = squaresGuess.length; i < len; i++){
-    //add an onclick to each square in your grid
+    
     squaresGuess[i].classList.add('white')
     squaresGuess[i].classList.add('guessSquare')
-
     
+    
+    // color change on click
     squaresGuess[i].addEventListener('click', () => {
-     
         if(squaresGuess[i].classList.contains('white')){
             
             squaresGuess[i].classList.remove('white')
             squaresGuess[i].setAttribute('id','red')
             
-            squaresGuess[i].classList.add('redDot')
-         }
-         else if (squaresGuess[i].classList.contains('redDot')){
-
-            squaresGuess[i].classList.add('orangeDot')
-            squaresGuess[i].classList.remove('redDot')
-            squaresGuess[i].setAttribute('id','orange')
-         }
-         else if (squaresGuess[i].classList.contains('orangeDot')){
-
-
-            squaresGuess[i].classList.remove('orangeDot')
-            squaresGuess[i].classList.add('yellowDot')
-            squaresGuess[i].setAttribute('id','yellow')
+            squaresGuess[i].classList.add('red') 
         }
-         else if (squaresGuess[i].classList.contains('yellowDot')){
-
-            squaresGuess[i].classList.remove('yellowDot')
-            squaresGuess[i].classList.add('greenDot')
-            squaresGuess[i].setAttribute('id','green')
-         }
-         else if (squaresGuess[i].classList.contains('greenDot')){
-
-            squaresGuess[i].classList.remove('greenDot')
-            squaresGuess[i].classList.add('blueDot')
-            squaresGuess[i].setAttribute('id','blue')
+        else{
+        for (let color in colors){
+        
+            if(squaresGuess[i].classList.contains(colors[color])){
+                squaresGuess[i].classList.remove(colors[color])
+                let newColorIndex=parseInt(color)+1
+                if(newColorIndex >= colors.length){
+                    newColorIndex=0
+                }
+                squaresGuess[i].setAttribute('id',colors[newColorIndex])
+                squaresGuess[i].classList.add(colors[newColorIndex])
+                break
+            }
         }
-        else if (squaresGuess[i].classList.contains('blueDot')){
-
-            squaresGuess[i].classList.remove('blueDot')
-            squaresGuess[i].classList.add('purpleDot')
-            squaresGuess[i].setAttribute('id','purple')
-        }
-        else if (squaresGuess[i].classList.contains('purpleDot')){
-
-            squaresGuess[i].classList.remove('purpleDot')
-            squaresGuess[i].classList.add('white')
-            squaresGuess[i].setAttribute('id','white')
-        }
-
-      
-        })
-    }// end of for loop
+    }
+    })
+    }// end of for loop 
 
     function createRandomPattern(){
         randomPattern=[]
-        let colors=["red","orange","yellow","green","blue","purple"]
+        
         for(let i=0; i<4;i++){
             randomPattern.push(colors[Math.floor(Math.random() * 6)])
         }
         return randomPattern
     }
-    // create an Array wi the colors chosen by the user
+    // create an Array with the colors chosen by the user
     // is usind the 'id' tag
     function createColorArray(){
 
@@ -177,6 +147,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 
         // check how often a color is used in the solution --> Dictionary
          let status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
+         let toBeTested=[]
 
        // check if position and color is right
         positionCounter=0;
@@ -191,20 +162,23 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
             }
             //check for right colors
             else{ 
-           
+                toBeTested.push(i)
+            }
+            }
+            for(let x in toBeTested){
                 for (let color in rightPattern ){
-                    if (rightPattern[color]=== userPattern[i] && status[rightPattern[color]]>0){
+                    if (rightPattern[color]=== userPattern[toBeTested[x]] && status[rightPattern[color]]>=1){
                        
-                        squaresHint[i].classList.add('blackHint')
+                        squaresHint[toBeTested[x]].classList.add('blackHint')
                         colorCounter+=1;
                         status[rightPattern[color]]-=1;
 
                     }
 
                 }
-
             }
-        }
+            
+        
         if(positionCounter===4){
             
             alert('You guessed right!')

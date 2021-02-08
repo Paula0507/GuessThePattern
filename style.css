@@ -69,7 +69,7 @@ div.instructions{
     
 }
 
-.blueDot {
+.blue {
     background-color: blue;
     border-radius: 50px;
 }
@@ -77,24 +77,24 @@ div.instructions{
     background-color: white;
     
 }
-.redDot{
+.red{
     background-color: red;
     border-radius: 50px;
 }
-.yellowDot{
+.yellow{
     background-color: yellow;
     border-radius: 50px;
 }
-.greenDot{
+.green{
     background-color: green;
     border-radius: 50px;
 }
 
-.purpleDot{
+.purple{
     background-color: purple;
     border-radius: 50px;
 }
-.orangeDot {
+.orange {
     background-color: orange;
   border-radius: 50px;
 }
