@@ -81,11 +81,11 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
             squaresGuess[i].classList.add('red') 
         }
         else{
-        for (let color in colors){
+        for (let x=0; x<colors.length;x++){
         
-            if(squaresGuess[i].classList.contains(colors[color])){
-                squaresGuess[i].classList.remove(colors[color])
-                let newColorIndex=parseInt(color)+1
+            if(squaresGuess[i].classList.contains(colors[x])){
+                squaresGuess[i].classList.remove(colors[x])
+                let newColorIndex=x+1
                 if(newColorIndex >= colors.length){
                     newColorIndex=0
                 }
