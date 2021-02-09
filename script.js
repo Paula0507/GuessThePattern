@@ -162,51 +162,46 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 
     function checkMatch(userPattern, squaresHint){
 
-        // check how often a color is used in the solution --> Dictionary
-         let status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
-         console.log(status)
-         let toBeTested=[]
-
-       // check if position and color is right
         let positionCounter=0;
         let colorCounter=0;
-        for(let i=0; i<userPattern.length;i++){
-            
-            if(userPattern[i]===rightPattern[i]){
-               
-                 // reihenweise Anordnung der Hinweise
-                for (let j=0; j< squaresHint.length;j++){
-                    if (!squaresHint[j].classList.contains('whiteHint') && !squaresHint[j].classList.contains('blackHint') ){
-                squaresHint[j].classList.add('whiteHint')
-                positionCounter+=1;
-                status[rightPattern[i]]-=1
-                break
-            }
-        }
-        }
-            //check for right colors
-            else{ 
-                toBeTested.push(i)
-            }
-            }
-            for(let x in toBeTested){
-                for (let color in rightPattern ){
-                    if (rightPattern[color]=== userPattern[toBeTested[x]] && status[rightPattern[color]]>=1){
-                        
-                        // reihenweise Anordnung der Hinweise
-                        for (let y=0; y< squaresHint.length;y++){
-                            if (!squaresHint[y].classList.contains('whiteHint') && !squaresHint[y].classList.contains('blackHint') ){
-                                    squaresHint[y].classList.add('blackHint')
-                                    colorCounter+=1;
-                                    status[rightPattern[color]]-=1;
-                                    break
+        let hintCounter=0;
 
-                    }}}
-
+        function checkWhite(userPattern, squaresHint){
+            let newUserPattern=[]
+            let newRightPattern=[]
+            // white
+            for (let i=0; i<4;i++){
+                if(userPattern[i]!==rightPattern[i]){
+                    newUserPattern.push(userPattern[i])
+                    newRightPattern.push(rightPattern[i])
+                }
+                else{
+                    squaresHint[hintCounter].classList.add('whiteHint')
+                    hintCounter+=1
+                    positionCounter+=1
                 }
             }
-            
-        
+            checkBlack(newUserPattern,newRightPattern)
+
+        }// end of checkWhite
+        function checkBlack(newUserPattern,newRightPattern){
+            for (let i=0; i<newRightPattern.length;i++){
+                for(let j=0; j<newUserPattern.length;j++){
+                    if(newRightPattern[i]===newUserPattern[j]){
+                        newRightPattern.splice(i,1,'placeholderX')
+                        newUserPattern.splice(j,1,'placeholderY')
+                        squaresHint[hintCounter].classList.add('blackHint')
+                        hintCounter+=1
+                        colorCounter+=1
+
+
+                    }
+                }
+            }
+
+        }
+
+        checkWhite(userPattern, squaresHint)
         if(positionCounter===4){
             
             alert('You guessed right!')
