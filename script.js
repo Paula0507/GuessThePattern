@@ -1,20 +1,37 @@
+//import {arrayLength} from './firstpage.js';
 document.addEventListener('DOMContentLoaded', () => {
 
     const squaresGuess= document.querySelectorAll('.guess div')
     const squaresHint = document.querySelectorAll('.hints div')
     const checkButtons= document.querySelectorAll('button')
-
-   const colors=["red","orange","yellow","green","blue","purple"]
-   let corlorClasses= colors
-    corlorClasses.push("white")
-
-    var rightPattern = createRandomPattern()
-    console.log(rightPattern)
-
-    // show instructions on buttonclick
+    var rightPattern;
+    
     const instructionsText= document.querySelector('div.instructions')
     const instructionsButton= document.querySelector('button.instructions')
+    const difficultyInput=document.querySelector('.difficulty input')
+    const difficultyStartButton= document.querySelector('.difficulty button')
+    var numberColors=6
+
+   const allColors=['red','orange','yellow','green','blue','pink','purple']
+   var colors=['red','orange','yellow','green','blue','pink']
+  
+// create right pattern and set difficulty level
+   difficultyStartButton.addEventListener('click',()=>{
+       numberColors=difficultyInput.value
+       console.log(numberColors)
+       colors=allColors.slice(0,numberColors)
+
+       rightPattern = createRandomPattern()
+       console.log('right pattern: ',rightPattern)
+       difficultyStartButton.disabled=true
+
+
+   })
+
+   
     
+
+    // show instructions on buttonclick
     instructionsButton.addEventListener('click', () => {
         if(instructionsButton.innerHTML==='Instructions'){
        instructionsText.style.backgroundColor='white'
@@ -36,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const playAgain= document.getElementById('newGame')
     
     playAgain.addEventListener('click', ()=> {
-        rightPattern= createRandomPattern()
-        console.log(rightPattern)
+// arrow fuction playAgain
+    difficultyStartButton.disabled=false
 
         //renew guess squares
         for (let i = 0, len = squaresGuess.length; i < len; i++){
@@ -99,10 +116,10 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
     }// end of for loop 
 
     function createRandomPattern(){
-        randomPattern=[]
+        let randomPattern=[]
         
         for(let i=0; i<4;i++){
-            randomPattern.push(colors[Math.floor(Math.random() * 6)])
+            randomPattern.push(colors[Math.floor(Math.random() * numberColors)])
         }
         return randomPattern
     }
@@ -147,11 +164,12 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
 
         // check how often a color is used in the solution --> Dictionary
          let status = rightPattern.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {});
+         console.log(status)
          let toBeTested=[]
 
        // check if position and color is right
-        positionCounter=0;
-        colorCounter=0;
+        let positionCounter=0;
+        let colorCounter=0;
         for(let i=0; i<userPattern.length;i++){
             
             if(userPattern[i]===rightPattern[i]){
@@ -197,4 +215,7 @@ for (let i = 0, len = squaresGuess.length; i < len; i++){
             alert('Nothing is right')
         }
 }
+
+
+
 })

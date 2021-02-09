@@ -1,6 +1,9 @@
 body{
     background-color: rgb(75, 12, 12);
 }
+label{
+    color: white;
+}
 button{
     background-color: white;
     border: none;
@@ -33,7 +36,7 @@ div.instructions{
     height: 400px;
     width: 400px;
     position: absolute;
-   right: 80px;
+     right: 80px;
     top:100px;
     background-color: rgb(75, 12, 12);
     color:rgb(75, 12, 12);
@@ -97,6 +100,10 @@ div.instructions{
 .orange {
     background-color: orange;
   border-radius: 50px;
+}
+.pink {
+    background-color: rgb(209, 38, 144);
+    border-radius: 50px;
 }
 
 .whiteHint{

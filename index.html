@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Guess The Pattern</title>
     <link rel="stylesheet" href="style.css"></link>
-    <script src="script.js" charset="utf-8"></script>
+   
+    <script type="module" src="script.js" charset="utf-8"></script>
 </head>
 <body>
 <h1>Can you guess the pattern?</h1>
@@ -32,10 +33,13 @@
             </div>
         </th>
         <th>
-            <div>
-                <button id=newGame>Play again</button>
-                <button class='instructions'>Instructions</button>
+            <div class='difficulty'>
+                <label>Difficulty:</label> 
+                <input type='number' min='2' max='7'>
+                <button>START GAME</button>
+                
             </div>
+            
         </th>
 
        
@@ -65,12 +69,10 @@
             </div>
         </th>
         <th>
-            <div class="solution">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+            <div>
+                <button id=newGame>Play again</button>
+                <button class='instructions'>Instructions</button>
+            </div> 
         </th>
     </tr>
 
