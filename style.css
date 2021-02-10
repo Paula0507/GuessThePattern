@@ -1,6 +1,9 @@
 body{
     background-color: rgb(75, 12, 12);
 }
+label{
+    color: white;
+}
 button{
     background-color: white;
     border: none;
@@ -33,7 +36,7 @@ div.instructions{
     height: 400px;
     width: 400px;
     position: absolute;
-   right: 80px;
+     right: 80px;
     top:100px;
     background-color: rgb(75, 12, 12);
     color:rgb(75, 12, 12);
@@ -69,7 +72,7 @@ div.instructions{
     
 }
 
-.blueDot {
+.blue {
     background-color: blue;
     border-radius: 50px;
 }
@@ -77,26 +80,30 @@ div.instructions{
     background-color: white;
     
 }
-.redDot{
+.red{
     background-color: red;
     border-radius: 50px;
 }
-.yellowDot{
+.yellow{
     background-color: yellow;
     border-radius: 50px;
 }
-.greenDot{
+.green{
     background-color: green;
     border-radius: 50px;
 }
 
-.purpleDot{
+.purple{
     background-color: purple;
     border-radius: 50px;
 }
-.orangeDot {
+.orange {
     background-color: orange;
   border-radius: 50px;
+}
+.pink {
+    background-color: rgb(209, 38, 144);
+    border-radius: 50px;
 }
 
 .whiteHint{
