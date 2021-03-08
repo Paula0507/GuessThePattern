@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
        instructionsButton.innerHTML='Hide'
         }
         else{
-            instructionsText.style.backgroundColor='rgb(75, 12, 12)'
-       instructionsText.style.color='rgb(75, 12, 12)'
+            instructionsText.style.backgroundColor='rgb(23, 157, 161)'
+       instructionsText.style.color='rgb(23, 157, 161)'
         instructionsButton.innerHTML='Instructions'
          }
     })

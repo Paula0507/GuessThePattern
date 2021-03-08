@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(75, 12, 12);
+    background-color: rgb(23, 157, 161);
 }
 label{
     color: white;
@@ -17,7 +17,7 @@ button{
     border-radius: 50%;
 }
 .solution {
-    background-color:  rgb(75, 12, 12);
+    background-color: rgb(23, 157, 161);
     height: 100px;
     width: 450px;
 }
@@ -38,8 +38,8 @@ div.instructions{
     position: absolute;
      right: 80px;
     top:100px;
-    background-color: rgb(75, 12, 12);
-    color:rgb(75, 12, 12);
+    background-color: rgb(23, 157, 161);
+    color:rgb(23, 157, 161);
     display: flex;
     flex-wrap: wrap;
    
@@ -68,7 +68,7 @@ div.instructions{
     display: flex;
     flex-wrap: wrap;
     border-style: solid; 
-    border-color: rgb(75, 12, 12);
+    border-color: rgb(23, 157, 161);
     
 }
 
